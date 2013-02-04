@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="style.css" type="text/css" />
+    <script src="libs/jquery.js"></script>
+    <script src="popup.js"></script>
+  </head>
+  <body>
+    <form action="" id="enjector-form">
+      <div class="control-group">
+        <label class="control-label">Content selector:</label>
+        <div class="controls">
+          <div class="input-prepend">
+            <span class="add-on">$('</span>
+            <input type="text" name="selector" id="selector" />
+            <span class="add-on">')</span>
+          </div>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label">API Key:</label>
+        <div class="controls">
+          <input type="text" name="api_key" id="api_key" />
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label">Article ID:</label>
+        <div class="controls">
+          <input type="text" name="article_id" id="article_id" />
+        </div>
+      </div>
+      <button type="submit" class="btn">Inject</button>
+    </form>
+  </body>
+</html>
