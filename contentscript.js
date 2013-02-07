@@ -6,10 +6,13 @@ var Enjector = (function(window, undefined) {
     the_tag.id = 'enxt-script';
     the_tag.type = 'text/javascript';
     the_tag.setAttribute('data-electnext','');
-    the_tag.textContent = "window._enxt = [['set_article', '50ea754fe45794c926000001'],['set_account', 'abc123'],['setup_admin']];";
+    the_tag.textContent = "window._enxt = [['set_article', '"+this.article_id+"'],['set_account', 'abc123'],['setup_admin']];";
         
     var b = document.getElementsByTagName('body')[0];
-    b.insertBefore(the_tag);
+    if(this.injector_target != "" && document.querySelector(this.injector_target)) {
+      b = document.querySelector(this.injector_target);
+    }
+    b.insertAdjacentElement('beforeend',the_tag);
 
     var enxt = document.createElement('script'); enxt.type = 'text/javascript'; enxt.async = true;
     enxt.src = '//electnext.dev/api/v1/info_widget.js';
@@ -20,11 +23,21 @@ var Enjector = (function(window, undefined) {
   
   var show_options = function() {
     var opt_box = document.createElement('div');
-    opt_box.innerHTML = "<form id='enxt-options-form'>"
+    var options_css = '<style>'
+      +'#enxt-options-wrapper { background-color: #111; color: #fff; padding: 7px; }'
+      +'#enxt-options-wrapper form { margin: 0 auto; width: 768px; }'
+      +'#enxt-options-wrapper input[type="text"] { margin: 0; }'
+      +'#enxt-options-wrapper span { margin-right: 10px; }'
+      +'</style>';
+    opt_box.innerHTML = options_css+"<div id='enxt-options-wrapper'><form id='enxt-options-form'>"
+      +"<span>"
       +"Target selector: $(<input type='text' id='enxt-injector-selector' placeholder='leave blank to add to bottom of page' />) "
+      +"</span>"
+      +"<span>"
       +"Article ID: <input type='text' id='enxt-injector-article-id' />"
+      +"</span>"
       +"<button>Inject widget</button>"
-      +"</form>";
+      +"</form></div>";
     
     var b = document.getElementsByTagName('body')[0];
     b.firstElementChild.insertAdjacentElement('beforebegin', opt_box);
