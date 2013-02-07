@@ -1,10 +1,10 @@
 {
   "name": "ElectNext Political Profile Injector",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "manifest_version": 2,
   "description": "Injects the ElectNext Political Profile widget into the current page.",
   "icons": { "16" : "images/icon.png", "48" : "images/48.png", "128" : "images/128.png"},
-  "homepage_url": "https:/electnext.dev/",
+  "homepage_url": "https://electnext.com/",
   "background" : {
     "scripts": ["background.js"]
   },
@@ -19,7 +19,7 @@
     "*://*/*"
   ],
   "browser_action": {
-    "default_title": "Scan for politicians on this page",
+    "default_title": "Inject the ElectNext widget into this page.",
     "default_icon": "images/icon.png"
   }
 }
