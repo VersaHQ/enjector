@@ -27,11 +27,11 @@ var Enjector = (function(window, undefined) {
   var show_options = function() {
     var opt_box = document.createElement('div');
     var options_css = '<style>'
-      +'#enxt-options-wrapper { background-color: #0068a0; color: #FFF; padding: 7px; opacity: 0.9; width: 100%; position:fixed; }'
+      +'#enxt-options-wrapper { background-color: #0068a0; color: #FFF; padding: 7px; opacity: 0.9; width: 100%; position:fixed; z-index: 1000; }'
       +'#enxt-options-wrapper form { margin: 0 auto; width: 768px; }'
       +'#enxt-options-wrapper input[type="text"] { margin: 0; padding: 0 4px; background-color: #fff; }'
       +'#enxt-options-wrapper #enxt-injector-selector { width: 100px; }'
-      +'#enxt-options-wrapper span { margin-right: 10px; }'
+      +'#enxt-options-wrapper span { margin-right: 10px; font: 12px/14px sans-serif; }'
       +'#enxt-options-wrapper select { display: inline-table; width: 100px; height: auto; margin: 0; }'
       +'</style>';
     opt_box.innerHTML = options_css+"<div id='enxt-options-wrapper'>"
