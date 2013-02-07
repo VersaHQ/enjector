@@ -17,12 +17,13 @@ var Enjector = (function(window, undefined) {
     b.insertAdjacentElement('beforeend',the_tag);
 
     var enxt = document.createElement('script'); enxt.type = 'text/javascript'; enxt.async = true;
-    enxt.src = '//electnext.dev/api/v1/info_widget.js';
+    enxt.src = '//electnext.com/api/v1/info_widget.js';
     var k = document.getElementById('enxt-script');
     k.parentNode.insertBefore(enxt, k);
     this.snippet_added = true;
   };
   
+  // Add the options bar to the current page
   var show_options = function() {
     var opt_box = document.createElement('div');
     var options_css = '<style>'
@@ -33,14 +34,11 @@ var Enjector = (function(window, undefined) {
       +'#enxt-options-wrapper span { margin-right: 10px; }'
       +'#enxt-options-wrapper select { display: inline-table; width: 100px; height: auto; margin: 0; }'
       +'</style>';
-    opt_box.innerHTML = options_css+"<div id='enxt-options-wrapper'><form id='enxt-options-form'>"
+    opt_box.innerHTML = options_css+"<div id='enxt-options-wrapper'>"
+      +"<form id='enxt-options-form'>"
       +"<div>"
-      +"<span>"
-      +"Target selector: $(<input type='text' id='enxt-injector-selector' />) "
-      +"</span>"
-      +"<span>"
-      +"Article ID: <input type='text' id='enxt-injector-article-id' />"
-      +"</span>"
+      +"<span>Target selector: $(<input type='text' id='enxt-injector-selector' />) </span>"
+      +"<span>Article ID: <input type='text' id='enxt-injector-article-id' /></span>"
       +"<span><select id='enxt-injector-type'><option value='backend'>Admin</option><option value='front_end'>Front end</option></select></span>"
       +"<button>Inject widget</button>"
       +"</div>"
@@ -51,6 +49,9 @@ var Enjector = (function(window, undefined) {
     
     var option_form = opt_box.querySelector("#enxt-options-form");
     var that = this;
+    
+    // When 'inject widget' button is clicked, pull the values out of the form and
+    // add the ElectNext js snippet to the current page.
     option_form.addEventListener('submit', function(ev) {
       ev.preventDefault();
       that.injector_target = document.getElementById('enxt-injector-selector').value;
@@ -68,6 +69,8 @@ var Enjector = (function(window, undefined) {
   };
 })(window);
 
+// When the browser_action button is clicked, it sends a message that is picked up by
+// this guy, who, in turn, firsts off a function in the content script.
 chrome.extension.onMessage.addListener(function(request, sender, sendResponse) {
   if(request.command === "show_options") {
     Enjector.show_options();
