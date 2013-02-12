@@ -37,7 +37,7 @@ var Enjector = (function(window, undefined) {
       +'#enxt-options-wrapper span { margin-right: 10px; font: 12px/14px sans-serif; }'
       +'#enxt-options-wrapper select { display: inline-table; width: 100px; height: auto; margin: 0; }'
       +'#enxt-options-wrapper select#enxt-injector-position { width: 190px; }'
-      +'#enxt-options-wrapper button { border-radius: 5px; text-shadow: 1px 1px 1px #fff; background-color: #efefef; }'
+      +'#enxt-options-wrapper button { border-radius: 5px; text-shadow: 1px 1px 1px #fff; background-color: #efefef; margin: 0; padding: 2px; font: 12px/14px sans-serif; color: #111; }'
       +'</style>';
     opt_box.innerHTML = options_css+"<div id='enxt-options-wrapper'>"
       +"<form id='enxt-options-form'>"
